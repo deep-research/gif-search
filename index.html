@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Gif Search</title>
+
+	<!-- CSS Reset -->
+	<link rel="stylesheet" type="text/css" href="reset.css">
+	<!-- Bootstrap CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<!-- My CSS File -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<!-- Button Div -->
+	<div id="buttons"></div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col col-sm-8" id="images">
+			</div> <!-- Right Column -->
+			<div class="clear"></div>
+			<div class="col col-sm-4">
+				<!-- Add an animal -->
+				<form>
+				    <div class="form-group">
+				        <label>Add an animal</label>
+    					<input class="form-control" type="search" id="example-search-input">	
+    				</div>	    
+				    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+				</form>
+			<br>
+			</div> <!-- Left Column -->
+		</div> <!-- Row -->
+	</div> <!-- Container -->
+
+	<!-- jQuery CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- My JS File -->
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>

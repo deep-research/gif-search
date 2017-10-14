@@ -1,0 +1,30 @@
+/*Button Spacing*/
+.topic-btn {
+	margin: 4px;
+	padding-left: 15px;
+	padding-right: 15px;
+	opacity: .9;
+}
+
+#buttons {
+	margin: 5px;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#gallery-div {
+	float: left;
+	margin-right: 20px;
+	text-align: center;
+}
+
+.clear {
+	float: clear;
+}
+
+#images {
+	margin-bottom: 40px;
+}
