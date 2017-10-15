@@ -44,10 +44,13 @@ $(document).ready(function() {
 	        	newDiv = $("<div>").css("width", "200px").attr("id", "gallery-div")
 	        	console.log(response.data[i])
 	        	imgURL = response.data[i].images.original_still.url
+	        	gifURL = response.data[i].images.downsized.url
 	        	newImage = $("<img>")
 	        	newImage.css("width", "200px")
 	        	newImage.css("height", "200px")
-	        	newImage.attr("src", imgURL).attr("id", "gallery-img")
+	        	newImage.attr("id", "gallery-img").attr("alt", btnName + " image")
+	        	newImage.attr("src", imgURL).attr("data-state", "still")
+	        	newImage.attr("data-still", imgURL).attr("data-animate", gifURL)
 	        	newDiv.append("<div style='margin-bottom: 8px; margin-top: 15px; font-size: 20px;'>Rating: " + response.data[i].rating + "</div>")
 	        	newDiv.append(newImage)
 	        	$("#images").append(newDiv)
@@ -56,4 +59,18 @@ $(document).ready(function() {
 	    });
 	});
 
+	$("#images").on("click", "#gallery-img", function() {
+        var state = $(this).attr("data-state");
+
+        // Switch the attribute (still to animate or vice versa) and run the new one
+        if (state === "still") {
+            $(this).attr("data-state", "animate");
+            var dataAnimate = $(this).attr("data-animate")
+            $(this).attr("src", dataAnimate);
+        } else if (state === "animate") {
+            $(this).attr("data-state", "still");
+            var dataStill = $(this).attr("data-still")
+            $(this).attr("src", dataStill);
+        };
+	})
 });
