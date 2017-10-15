@@ -38,23 +38,35 @@ $(document).ready(function() {
 	    })
 
 	    .done(function(response) {
-	        // console.log(response);
 	        $("#images").empty()
 	        for (var i=0; i< response.data.length; i++) {
-	        	newDiv = $("<div>").css("width", "200px").attr("id", "gallery-div")
-	        	console.log(response.data[i])
+
+	        	// API URLs
 	        	imgURL = response.data[i].images.original_still.url
 	        	gifURL = response.data[i].images.downsized.url
-	        	newImage = $("<img>")
-	        	newImage.css("width", "200px")
-	        	newImage.css("height", "200px")
-	        	newImage.attr("id", "gallery-img").attr("alt", btnName + " image")
-	        	newImage.attr("src", imgURL).attr("data-state", "still")
-	        	newImage.attr("data-still", imgURL).attr("data-animate", gifURL)
-	        	newDiv.append("<div style='margin-bottom: 8px; margin-top: 15px; font-size: 20px;'>Rating: " + response.data[i].rating + "</div>")
-	        	newDiv.append(newImage)
-	        	$("#images").append(newDiv)
 
+	        	// Create img element for every image
+	        	galleryImage = $("<img>").css("width", "200px").css("height", "200px")
+
+	        	// Image generic information
+	        	galleryImage.attr("id", "gallery-img").attr("animal", btnName).attr("alt", btnName + " image")
+
+	        	// Movement data
+	        	galleryImage.attr("src", imgURL)
+	        	galleryImage.attr("data-still", imgURL).attr("data-animate", gifURL).attr("data-state", "still")
+
+	        	// Create a gallery div to display a rating with each image
+	        	galleryDiv = $("<div>").css("width", "200px").attr("id", "gallery-div")	 
+
+	        	// Create a div to store the image ratings
+	        	ratingDiv = $("<div>Rating: " + response.data[i].rating + "</div>")
+
+	        	// Add CSS properties to the rating divs
+	        	ratingDiv.css("margin-bottom", "8px").css("margin-top", "15px").css("font-size", "20px")
+
+	        	// Add the images and ratings to the page	
+	        	galleryDiv.append(ratingDiv).append(galleryImage)
+	        	$("#images").append(galleryDiv)
 	        };
 	    });
 	});
@@ -64,13 +76,25 @@ $(document).ready(function() {
 
         // Switch the attribute (still to animate or vice versa) and run the new one
         if (state === "still") {
+
             $(this).attr("data-state", "animate");
             var dataAnimate = $(this).attr("data-animate")
             $(this).attr("src", dataAnimate);
+
+            // Change alt txt to "animal gif"
+            var animalName = $(this).attr("animal");
+            $(this).attr("alt", animalName + " gif");
+
         } else if (state === "animate") {
+
             $(this).attr("data-state", "still");
             var dataStill = $(this).attr("data-still")
             $(this).attr("src", dataStill);
+
+            // Change alt txt to "animal img"
+            var animalName = $(this).attr("animal");
+            $(this).attr("alt", animalName + " img");
+            
         };
 	})
 });
